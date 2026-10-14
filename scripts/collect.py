@@ -20,7 +20,7 @@ ALL = pathlib.Path("data/lotto-all.json")
 LATEST = pathlib.Path("data/latest.json")
 KST = datetime.timezone(datetime.timedelta(hours=9))
 SCHEMA_VERSION = 1
-DELAY_SEC = 1.5  # 서버 부담 최소화
+DELAY_SEC = float(os.environ.get("COLLECT_DELAY_SEC", "1.5"))  # 서버 부담 최소화
 RETRIES = 3
 
 
