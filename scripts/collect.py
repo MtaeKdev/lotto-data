@@ -107,8 +107,10 @@ def main():
                     continue
                 draws[r] = d
             nxt = max(draws, default=0) + 1
-            if nxt <= rnd or not window or max(window) < nxt - 1:
-                break  # 더 이상 새 회차 없음
+            # 응답은 요청 회차 뒤로 4회차 이상을 담는다. 그보다 적으면 최신 회차까지 받은 것이다.
+            # (주간 실행은 요청 1회로 끝난다. Actions에서는 연속 요청이 끊기므로 요청 수를 최소로.)
+            if nxt <= rnd or not window or max(window) < rnd + 4:
+                break
             rnd = nxt
             time.sleep(DELAY_SEC)
     finally:
